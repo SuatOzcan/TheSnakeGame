@@ -11,6 +11,7 @@ class Food(Turtle):
     def spawn_food(self):
         random_x = random.randint(-280, 280)
         random_y = random.randint(-280, 280)
+        self.clear()
         self.goto(random_x, random_y)
         self.dot(20, 'magenta')
         
