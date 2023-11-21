@@ -13,6 +13,10 @@ screen.tracer(0)
 
 snake = Snake()
 screen.listen()
+screen.onkey(snake.move_right, "d")
+screen.onkey(snake.move_left, "a")
+screen.onkey(snake.move_up, "w")
+screen.onkey(snake.move_down, "s")
 
 bait = Food()
 bait.spawn_food()
@@ -27,13 +31,17 @@ while game_is_on:
     
     snake.move()
 
+    # Detect collision with the food.
     if snake.snake_head.distance(bait) < 15:
         bait.spawn_food()
         scoreboard.add_point()
+    # Detect collision with the wall
+    if snake.snake_head.xcor() > 280 or snake.snake_head.xcor() < -280 or \
+    snake.snake_head.ycor() > 280 or snake.snake_head.ycor() < -280:
+        game_is_on = False
 
-    screen.onkey(snake.move_right, "d")
-    screen.onkey(snake.move_left, "a")
-    screen.onkey(snake.move_up, "w")
-    screen.onkey(snake.move_down, "s")
+    
+
+scoreboard.game_over()
 
 screen.exitonclick()
