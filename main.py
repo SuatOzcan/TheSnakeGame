@@ -1,5 +1,6 @@
 from turtle import Screen
 from snake import Snake
+from food import Food
 import time
 
 screen = Screen()
@@ -11,11 +12,15 @@ screen.tracer(0)
 
 snake = Snake()
 screen.listen()
+
+bait = Food()
+bait.spawn_food()
+
 game_is_on = True
 
 while game_is_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.05)
     
     snake.move()
 
