@@ -14,6 +14,8 @@ class Scoreboard(Turtle):
         self.hideturtle()
         self.color("white")
         self.goto(0, 260)
+        with open("high_score.txt", "r") as file:
+            self.high_score = int(file.read())
         self.update_score()
 
     def update_score(self):
@@ -24,6 +26,8 @@ class Scoreboard(Turtle):
         if self.score > self.high_score:
             self.high_score = self.score
         self.score = 0
+        with open("high_score.txt", "w") as file:
+            file.write(str(self.high_score))
         self.update_score()
 
     def game_over(self):
